@@ -1,4 +1,4 @@
-package com.jarvisworkshop.StudyWithJarvis.service_implementation;
+package com.jarvisworkshop.StudyWithJarvis.services.implementations;
 
 import com.jarvisworkshop.StudyWithJarvis.dto.UserRegistrationDto;
 import com.jarvisworkshop.StudyWithJarvis.entities.UserRegistration;
