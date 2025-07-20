@@ -1,5 +1,6 @@
 package com.jarvisworkshop.StudyWithJarvis.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class Topic {
     private String topicName;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name ="subject_id", nullable = false)
     private Subject subject;
 

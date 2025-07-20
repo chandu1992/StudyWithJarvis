@@ -1,9 +1,11 @@
 package com.jarvisworkshop.StudyWithJarvis.services.implementations;
 
+import com.jarvisworkshop.StudyWithJarvis.dto.SubjectDTO;
 import com.jarvisworkshop.StudyWithJarvis.entities.Note;
 import com.jarvisworkshop.StudyWithJarvis.entities.Screenshot;
 import com.jarvisworkshop.StudyWithJarvis.entities.Subject;
 import com.jarvisworkshop.StudyWithJarvis.entities.Topic;
+import com.jarvisworkshop.StudyWithJarvis.exception_handler.exception.DataNotFoundException;
 import com.jarvisworkshop.StudyWithJarvis.repositories.NoteRepo;
 import com.jarvisworkshop.StudyWithJarvis.repositories.ScreenshotRepo;
 import com.jarvisworkshop.StudyWithJarvis.repositories.SubjectRepo;
@@ -21,6 +23,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UploadNotesServiceImpl implements UploadNotesService {
@@ -95,5 +99,15 @@ public class UploadNotesServiceImpl implements UploadNotesService {
         }
 
         return "not has been save successfully";
+    }
+
+    @Override
+    public List<SubjectDTO> getAllSubject() {
+
+        List<Subject> subjects = subjectRepo.findAll();
+        return subjects.stream()
+                .map(s -> new SubjectDTO(s.getId(), s.getName()))
+                .collect(Collectors.toList());
+
     }
 }

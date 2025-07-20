@@ -1,5 +1,7 @@
 package com.jarvisworkshop.StudyWithJarvis.controllers;
 
+import com.jarvisworkshop.StudyWithJarvis.dto.SubjectDTO;
+import com.jarvisworkshop.StudyWithJarvis.entities.Subject;
 import com.jarvisworkshop.StudyWithJarvis.entities.UserRegistration;
 import com.jarvisworkshop.StudyWithJarvis.exception_handler.exception.DataNotFoundException;
 import com.jarvisworkshop.StudyWithJarvis.exception_handler.exception.InternalServerError;
@@ -47,6 +49,27 @@ public class NoteController {
 
             String notesSatus = uploadNotesService.uploadNotes(subject,topic,heading,content,images);
             ResponseHandler<String> response= new ResponseHandler<>(notesSatus,200,"Reuest was successful", LocalDateTime.now());
+            return new ResponseEntity(response, HttpStatus.OK);
+
+        }catch(DataNotFoundException e){
+            throw new DataNotFoundException(e.getMessage());
+        }
+        catch (Exception e){
+            throw new InternalServerError(e.getMessage());
+        }
+    }
+
+    @GetMapping("/subjects")
+    public ResponseEntity<Object> getAllSubject(@RequestHeader String token){
+        if (!token.equals(this.token)) {
+            System.out.println("Token is invalid");
+            throw new UnauthorizedException("You are unauthorized to access the requested API");
+        }
+
+        try{
+
+            List<SubjectDTO> subjects = uploadNotesService.getAllSubject();
+            ResponseHandler<List<SubjectDTO>> response= new ResponseHandler<>(subjects,200,"Reuest was successful", LocalDateTime.now());
             return new ResponseEntity(response, HttpStatus.OK);
 
         }catch(DataNotFoundException e){
