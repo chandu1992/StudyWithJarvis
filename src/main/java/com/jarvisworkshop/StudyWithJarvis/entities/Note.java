@@ -36,6 +36,9 @@ public class Note {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
+    public Note() {
+    }
+
     public Note(String heading, String content, Topic topic, List<Screenshot> screenshots) {
         this.heading = heading;
         this.content = content;

@@ -19,6 +19,9 @@ public class Subject {
     @OneToMany(mappedBy = "subject", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Topic> topics = new ArrayList<>();
 
+    public Subject() {
+    }
+
     public Subject(String name, List<Topic> topics) {
         this.name = name;
         this.topics = topics;

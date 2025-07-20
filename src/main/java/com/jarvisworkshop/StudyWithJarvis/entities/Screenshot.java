@@ -19,6 +19,9 @@ public class Screenshot {
     @JoinColumn(name = "note_id", nullable = false)
     private Note note;
 
+    public Screenshot() {
+    }
+
     public Screenshot(String imageUrl, Note note) {
         this.imageUrl = imageUrl;
         this.note = note;

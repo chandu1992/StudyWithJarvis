@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -43,11 +44,7 @@ public class NoteController {
         }
 
         try{
-            System.out.println(subject);
-            System.out.println(topic);
-            System.out.println(heading);
-            System.out.println(content);
-            System.out.println(images);
+
             String notesSatus = uploadNotesService.uploadNotes(subject,topic,heading,content,images);
             ResponseHandler<String> response= new ResponseHandler<>(notesSatus,200,"Reuest was successful", LocalDateTime.now());
             return new ResponseEntity(response, HttpStatus.OK);
