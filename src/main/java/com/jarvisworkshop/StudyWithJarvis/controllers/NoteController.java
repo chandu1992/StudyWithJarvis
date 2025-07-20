@@ -30,10 +30,10 @@ public class NoteController {
 
     @PostMapping("/createNote")
     public ResponseEntity<Object> createNoteWithImages(
-            @RequestParam String subject,
-            @RequestParam String topic,
-            @RequestParam String heading,
-            @RequestParam String content,
+            @RequestHeader String subject,
+            @RequestHeader String topic,
+            @RequestHeader String heading,
+            @RequestHeader String content,
             @RequestBody MultipartFile[] images,
             @RequestHeader String token
 

@@ -20,7 +20,7 @@ public class Note {
     private String heading;
 
     @Lob
-    @Column(nullable = false)
+    @Column(columnDefinition = "LONGTEXT", nullable = false)
     private String content;
 
     @ManyToOne
